@@ -1,0 +1,97 @@
+<div class="ca">
+    <Form [formGroup]="caForm" (ngSubmit)="onSubmit()">
+        <mat-form-field appearance="fill">
+          <mat-label>Country</mat-label>
+          <mat-select placeholder="Select Country" [formControl]="country">
+            <mat-option *ngFor="let country of countries  | keyvalue" [value]="country.value">
+              {{country.value}}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+        <mat-form-field appearance="fill">
+          <mat-label>Province</mat-label>
+          <input type="province" matInput placeholder="Province" [formControl]="province" required>
+          <mat-error *ngIf="(province.touched || submitted) && province.hasError('required')">Province is required</mat-error>
+          <mat-error *ngIf="province.touched && province.hasError('province')">Enter a valid province</mat-error>
+        </mat-form-field>
+        <mat-form-field appearance="fill">
+          <mat-label>City</mat-label>
+          <input type="city" matInput placeholder="City" [formControl]="city" required>
+          <mat-error *ngIf="(city.touched || submitted) && city.hasError('required')">City is required</mat-error>
+          <mat-error *ngIf="city.touched && city.hasError('city')">Enter a valid city</mat-error>
+        </mat-form-field>
+        <mat-form-field appearance="fill">
+          <mat-label>Organization</mat-label>
+          <input type="organization" matInput placeholder="Organization" [formControl]="organization" required>
+          <mat-error *ngIf="(organization.touched || submitted) && organization.hasError('required')">Organization is required</mat-error>
+          <mat-error *ngIf="organization.touched && organization.hasError('organization')">Enter a valid organization</mat-error>
+        </mat-form-field>  
+        <mat-form-field appearance="fill">
+          <mat-label>Email</mat-label>
+          <input type="email" matInput placeholder="Email" [formControl]="email" required>
+          <mat-error *ngIf="(email.touched || submitted) && email.hasError('required')">Email is required</mat-error>
+          <mat-error *ngIf="email.touched && email.hasError('email')">Enter a valid email</mat-error>
+        </mat-form-field>        
+        <mat-form-field appearance="fill">
+          <mat-label>Organizational Unit</mat-label>
+          <input type="organizationalUnit" matInput placeholder="Organizational Unit" [formControl]="organizationalUnit" required>
+          <mat-error *ngIf="(organizationalUnit.touched || submitted) && organizationalUnit.hasError('required')">Organizational Unit is required</mat-error>
+          <mat-error *ngIf="organizationalUnit.touched && organizationalUnit.hasError('organizationalUnit')">Enter a valid organizational unit</mat-error>
+        </mat-form-field>  
+        <mat-form-field appearance="fill">
+          <mat-label>Algorithm</mat-label>
+          <mat-select placeholder="Select Algorithm" [formControl]="algorithm">
+            <mat-option *ngFor="let algorithm of algorithms  | keyvalue" [value]="algorithm.value">
+              {{algorithm.value}}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>      
+        <mat-form-field appearance="fill">
+          <mat-label>Curve</mat-label>
+          <mat-select placeholder="Select Curve" [formControl]="curve">
+            <mat-option *ngFor="let curve of curves  | keyvalue" [value]="curve.value">
+              {{curve.value}}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>    
+        <mat-form-field appearance="fill">
+          <mat-label>Digest</mat-label>
+          <mat-select placeholder="Select Digest" [formControl]="digest">
+            <mat-option *ngFor="let digest of digests  | keyvalue" [value]="digest.value">
+              {{digest.value}}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+        <mat-form-field appearance="fill">
+          <mat-label>Expire</mat-label>
+          <input type="expire" matInput placeholder="Expire" [formControl]="expire" required>
+          <mat-error *ngIf="(expire.touched || submitted) && expire.hasError('required')">Expire is required</mat-error>
+          <mat-error *ngIf="expire.touched && expire.hasError('expire')">Enter a valid expire</mat-error>
+        </mat-form-field>   
+        <mat-form-field appearance="fill">
+          <mat-label>Renew</mat-label>
+          <input type="renew" matInput placeholder="Renew" [formControl]="renew" required>
+          <mat-error *ngIf="(renew.touched || submitted) && renew.hasError('required')">Renew is required</mat-error>
+          <mat-error *ngIf="renew.touched && renew.hasError('renew')">Enter a valid renew</mat-error>
+        </mat-form-field>  
+        <mat-form-field appearance="fill">
+          <mat-label>Days</mat-label>
+          <input type="days" matInput placeholder="Days" [formControl]="days" required>
+          <mat-error *ngIf="(days.touched || submitted) && days.hasError('required')">Days are required</mat-error>
+          <mat-error *ngIf="days.touched && days.hasError('days')">Enter valid days</mat-error>
+        </mat-form-field> 
+        <mat-form-field appearance="fill">
+          <mat-label>Common name</mat-label>
+          <input type="commonName" matInput placeholder="Common name" [formControl]="commonName" required>
+          <mat-error *ngIf="(commonName.touched || submitted) && commonName.hasError('required')">Common name is required</mat-error>
+          <mat-error *ngIf="commonName.touched && commonName.hasError('commonName')">Enter a valid common name</mat-error>
+        </mat-form-field>           
+        <mat-form-field appearance="fill">
+          <mat-label>Batch</mat-label>
+          <input type="batch" matInput placeholder="Batch" [formControl]="batch">
+        </mat-form-field>             
+        <p>   
+          <button mat-raised-button type="submit" color="primary">Create Certificate Authority</button>  
+        </p>
+    </Form>
+</div>
