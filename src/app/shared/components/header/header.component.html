@@ -2,14 +2,19 @@
   <mat-toolbar-row class="nav">
     <div class="nav-home">       
       <a class="nav-brand" mat-button (click)="onClick()" [routerLink]="'/home'" >
-        <img class="App-logo" src="/assets/images/logo.png" alt='Logo' />
+        <img class="app-logo" src="/assets/images/logo.png" alt='Logo' />
         <span class="title"> User Management </span>
       </a>
     </div>
     <div>
-      <a mat-button (click)="onClick()" [routerLink]="'/ca'"> Certificate Authority </a>
-      <a mat-button (click)="onClick()" [routerLink]="'/reviews'"> Reviews </a>
-      <a mat-button (click)="onClick()" [routerLink]="'/myreviews'"> My Reviews </a>
+      <button mat-button [matMenuTriggerFor]="vars">EasyRSA Vars Settings</button>
+      <mat-menu #vars="matMenu">
+        <button mat-menu-item [routerLink]="'/vars'">List</button>
+        <button mat-menu-item [routerLink]="'/vars/create'">Create</button>
+      </mat-menu>
+    </div>
+    <div>
+      <a mat-button (click)="onClick()" [routerLink]="'/certificates'"> EasyRSA Certificates </a>
     </div>
     <div class="nav-login" *ngIf="!isAuthenticated()">
       <a mat-button (click)="onClick()" [routerLink]="'/signin'"> Sign in </a>

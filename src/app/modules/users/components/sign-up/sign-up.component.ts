@@ -20,7 +20,7 @@ export class SignUpComponent implements OnInit {
 
   signUpForm: FormGroup = this.formBuilder.group({
     email: this.email,
-    username: this.name,
+    name: this.name,
     password: this.password,
     confirmPassword: this.confirmPassword,
     birthday: this.birthday,
@@ -41,7 +41,7 @@ export class SignUpComponent implements OnInit {
   }
 
   signUp(user: User) {
-    console.log(user.email);
+    console.log(user);
     this.authService.signUp(user).subscribe(res => {
       this.router.navigateByUrl('home');
     });

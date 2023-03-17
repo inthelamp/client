@@ -1,7 +1,7 @@
-export enum Role 
+export enum Roles 
 {
-    Admin = "Admin",
-    Client = "Client",    
+    ADMIN = "Admin",
+    USER = "User",    
 }
 
 export interface User
@@ -13,6 +13,6 @@ export interface User
     confirmPassword: string;
     phoneNumber?: string;
     addressId?: string; 
-    role?: Role;
+    role?: Roles;
     createdAt?: Date;
 }

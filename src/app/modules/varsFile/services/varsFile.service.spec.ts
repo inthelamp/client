@@ -1,13 +1,13 @@
 import { TestBed } from '@angular/core/testing';
 
-import { CertificateService } from './certificate.service';
+import { VarsFileService } from './varsFile.service';
 
-describe('CertificateService', () => {
-  let service: CertificateService;
+describe('VarsFileService', () => {
+  let service: VarsFileService;
 
   beforeEach(() => {
     TestBed.configureTestingModule({});
-    service = TestBed.inject(CertificateService);
+    service = TestBed.inject(VarsFileService);
   });
 
   it('should be created', () => {

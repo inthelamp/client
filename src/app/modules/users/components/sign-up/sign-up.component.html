@@ -9,7 +9,7 @@
     <mat-form-field appearance="fill">
       <mat-label>Name</mat-label>
       <input type="text" matInput placeholder="Name" [formControl]="name" required>
-      <mat-error *ngIf="(name.touched || submitted) && name.hasError('required')">Username is required</mat-error>
+      <mat-error *ngIf="(name.touched || submitted) && name.hasError('required')">Name is required</mat-error>
       <mat-error *ngIf="name.touched && name.hasError('minlength')">Minimum 3 characters</mat-error>
     </mat-form-field>    
     <mat-form-field appearance="fill">

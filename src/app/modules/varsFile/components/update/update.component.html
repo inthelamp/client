@@ -1,0 +1,107 @@
+<div class="vars-form">
+    <div class="top-buttons">
+      <button mat-raised-button type="button" color="primary" (click)="onNewVarsSettings()">New Vars Settings</button> 
+      <button mat-raised-button type="button" color="warn" (click)="onDelete()">Delete</button>   
+    </div>
+    <Form [formGroup]="varsFileForm" (ngSubmit)="onSubmit()">
+        <input type="hidden" [formControl]="id">
+        <input type="hidden" [formControl]="commonName">
+        <mat-form-field appearance="fill">
+          <mat-label>Country</mat-label>
+          <mat-select placeholder="Select Country" [formControl]="country">
+            <mat-option *ngFor="let country of countries  | keyvalue" [value]="country.value">
+              {{country.value}}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+        <mat-form-field appearance="fill">
+          <mat-label>Province</mat-label>
+          <input matInput placeholder="Province" [formControl]="province" required>
+          <mat-error *ngIf="(province.touched || submitted) && province.hasError('required')">Province is required</mat-error>
+          <mat-error *ngIf="province.touched && province.hasError('invalid')">Enter a valid province</mat-error>
+        </mat-form-field>
+        <mat-form-field appearance="fill">
+          <mat-label>City</mat-label>
+          <input matInput placeholder="City" [formControl]="city" required>
+          <mat-error *ngIf="(city.touched || submitted) && city.hasError('required')">City is required</mat-error>
+          <mat-error *ngIf="city.touched && city.hasError('invalid')">Enter a valid city</mat-error>
+        </mat-form-field>
+        <mat-form-field appearance="fill">
+          <mat-label>Organization</mat-label>
+          <input matInput placeholder="Organization" [formControl]="organization" required>
+          <mat-error *ngIf="(organization.touched || submitted) && organization.hasError('required')">Organization is required</mat-error>
+          <mat-error *ngIf="organization.touched && organization.hasError('invalid')">Enter a valid organization</mat-error>
+        </mat-form-field>  
+        <mat-form-field appearance="fill">
+          <mat-label>Email</mat-label>
+          <input type="email" matInput placeholder="Email" [formControl]="email" required>
+          <mat-error *ngIf="(email.touched || submitted) && email.hasError('required')">Email is required</mat-error>
+          <mat-error *ngIf="email.touched && email.hasError('email')">Enter a valid email</mat-error>
+        </mat-form-field>        
+        <mat-form-field appearance="fill">
+          <mat-label>Organizational Unit</mat-label>
+          <input matInput placeholder="Organizational Unit" [formControl]="organizationalUnit" required>
+          <mat-error *ngIf="(organizationalUnit.touched || submitted) && organizationalUnit.hasError('required')">Organizational Unit is required</mat-error>
+          <mat-error *ngIf="organizationalUnit.touched && organizationalUnit.hasError('invalid')">Enter a valid organizational unit</mat-error>
+        </mat-form-field>
+        <mat-form-field appearance="fill">
+          <mat-label>Key Size</mat-label>
+          <input type="number" matInput placeholder="Key size" [formControl]="keySize" required>
+          <mat-error *ngIf="(keySize.touched || submitted) && keySize.hasError('required')">Key size are required</mat-error>
+          <mat-error *ngIf="keySize.touched && keySize.hasError('invalid')">Enter valid a key size</mat-error>
+        </mat-form-field> 
+        <mat-form-field appearance="fill">
+          <mat-label>Algorithm</mat-label>
+          <mat-select placeholder="Select Algorithm" [formControl]="algorithm">
+            <mat-option *ngFor="let algorithm of algorithms  | keyvalue" [value]="algorithm.value">
+              {{algorithm.value}}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>      
+        <mat-form-field appearance="fill">
+          <mat-label>Curve</mat-label>
+          <mat-select placeholder="Select Curve" [formControl]="curve">
+            <mat-option *ngFor="let curve of curves  | keyvalue" [value]="curve.value">
+              {{curve.value}}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>    
+        <mat-form-field appearance="fill">
+          <mat-label>Digest</mat-label>
+          <mat-select placeholder="Select Digest" [formControl]="digest">
+            <mat-option *ngFor="let digest of digests  | keyvalue" [value]="digest.value">
+              {{digest.value}}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+        <mat-form-field appearance="fill">
+          <mat-label>CA Expire</mat-label>
+          <input type="number" matInput placeholder="CA Expire" [formControl]="caExpire" required>
+          <mat-error *ngIf="(caExpire.touched || submitted) && caExpire.hasError('required')">A valid CA expire is required</mat-error>
+        </mat-form-field>   
+        <mat-form-field appearance="fill">
+          <mat-label>Certificate Expire</mat-label>
+          <input type="number" matInput placeholder="Certificate Expire" [formControl]="certExpire" required>
+          <mat-error *ngIf="(certExpire.touched || submitted) && certExpire.hasError('required')">A valid certificate expire is required</mat-error>
+        </mat-form-field>         
+        <mat-form-field appearance="fill">
+          <mat-label>Certificate Renew Days</mat-label>
+          <input type="number" matInput placeholder="Certificate Renew Days" [formControl]="certRenewDays" required>
+          <mat-error *ngIf="(certRenewDays.touched || submitted) && certRenewDays.hasError('required')">A valid certificate renew days value is required</mat-error>
+        </mat-form-field>  
+        <mat-form-field appearance="fill">
+          <mat-label>CRL Days</mat-label>
+          <input type="number" matInput placeholder="CRL days" [formControl]="crlDays" required>
+          <mat-error *ngIf="(crlDays.touched || submitted) && crlDays.hasError('required')">A valid CRL days value is required</mat-error>
+        </mat-form-field> 
+        <!-- <mat-form-field appearance="fill">
+          <mat-label>Common name</mat-label>
+          <input matInput placeholder="Common name" [formControl]="commonName" required>
+          <mat-error *ngIf="(commonName.touched || submitted) && commonName.hasError('required')">Common name is required</mat-error>
+          <mat-error *ngIf="commonName.touched && commonName.hasError('invalid')">Enter a valid common name</mat-error>
+        </mat-form-field>        -->
+        <p>   
+          <button mat-raised-button type="submit" color="primary">Update Vars Settings</button>  
+        </p>
+    </Form>
+</div>

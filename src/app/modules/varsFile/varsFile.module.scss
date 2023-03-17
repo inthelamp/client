@@ -1,0 +1,102 @@
+@media all and (min-width: 480px) {
+  .vars-form {
+    padding: 20px 0;
+    margin: 0 auto;
+    max-width: 500px;
+    
+    .top-buttons {
+      text-align: left;
+      &::ng-deep button {
+          margin-right: 1vmin;
+      }
+      padding-bottom: 1vmin;
+    }
+
+    form {
+      display: flex;
+      flex-direction: column;
+    }
+
+    p {
+      margin-top: 1.5rem;
+    }
+  }
+
+  .vars-list {
+    text-align: center;
+
+    table {
+      width: 90%;
+      margin: 0 auto;
+      text-align: left;
+
+      .mat-column-common-name {
+        width: 16%;
+      }
+      
+      .mat-column-country {
+        width: 5%;
+      }
+      
+      .mat-column-province {
+        width: 15%;
+      }
+      
+      .mat-column-city {
+        width: 15%;
+      }    
+  
+      .mat-column-organization {
+        width: 16%;
+      }    
+  
+      .mat-column-organizational-unit {
+        width: 16%;
+      }    
+  
+      .mat-column-email {
+        width: 17%;
+      }    
+  
+      .mat-row .mat-cell {
+        cursor: pointer;
+      }
+      
+      .mat-row:hover .mat-cell {
+        background-color: black;
+        color: white;
+      }
+    }
+  }
+
+
+  .vars-list {
+    text-align: center;
+    margin: 1em 1em 2em 1em;
+    padding: 0;
+    max-height: 30vmin;
+    overflow-y: auto;
+
+    li {
+        list-style-type: none;
+        position: relative;
+        margin-bottom: 1em;
+        cursor: default;
+        word-wrap: break-word;
+
+        &:hover {
+            left: .1em;
+        }
+        
+        span {
+            display: inline-block;
+            width: 75%;
+        }
+
+        button {
+            margin-left: 1em;
+            width: 15%;
+        }  
+    }
+  }
+}

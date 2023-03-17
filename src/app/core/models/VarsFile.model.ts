@@ -1,3 +1,5 @@
+import { Issuer } from "./Issuer.model";
+
 export enum Countries 
 {
     CA = "CA", 
@@ -106,23 +108,18 @@ export enum Curves
     SM2 = "SM2",
 }
 
-export interface CA
+export interface VarsFile extends Omit<Issuer, 'id'>
 {
-    id: string;
-    userId: string;
+    id?: string;
+    userId?: string;
     country: Countries;
-    province: string;
-    city: string;
-    organization: string;
-    email: string;
-    organizationalUnit: string;
+    keySize: number;
     algorithm: Algorithms;
     curve: Curves,
     digest: Digests;
-    expire: number;
-    renew: number;
-    days: number;
-    commonName: string;
-    batch: string;
-    createdAt: Date;
+    caExpire: number;
+    certExpire: number;
+    certRenewDays: number;
+    crlDays: number;
+    createdAt?: Date;
 }

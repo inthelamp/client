@@ -7,7 +7,7 @@ import { CoreModule } from './core/core.module';
 import { SharedModule } from './shared/shared.module';
 import { HomeModule } from './modules/home/home.module';
 import { UserModule } from './modules/users/user.module';
-import { CertificateModule } from './modules/certificates/certificate.module';
+import { VarsFileModule } from './modules/varsFile/varsFile.module';
 
 
 @NgModule({
@@ -22,7 +22,7 @@ import { CertificateModule } from './modules/certificates/certificate.module';
     SharedModule,
     HomeModule,
     UserModule,
-    CertificateModule
+    VarsFileModule
   ],
   providers: [],
   bootstrap: [AppComponent]
