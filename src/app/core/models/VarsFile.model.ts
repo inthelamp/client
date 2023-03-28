@@ -1,11 +1,5 @@
 import { Issuer } from "./Issuer.model";
 
-export enum Countries 
-{
-    CA = "CA", 
-    US = "US",
-}
-
 export enum Digests 
 {
     md5 = "md5", 
@@ -112,7 +106,6 @@ export interface VarsFile extends Omit<Issuer, 'id'>
 {
     id?: string;
     userId?: string;
-    country: Countries;
     keySize: number;
     algorithm: Algorithms;
     curve: Curves,

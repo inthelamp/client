@@ -7,12 +7,13 @@ import { CoreModule } from './core/core.module';
 import { SharedModule } from './shared/shared.module';
 import { HomeModule } from './modules/home/home.module';
 import { UserModule } from './modules/users/user.module';
-import { VarsFileModule } from './modules/varsFile/varsFile.module';
+import { VarsFileModule } from './modules/vars-file/vars-file.module';
+import { CertificateModule } from './modules/certificate/certificate.module';
 
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
   ],
   imports: [
     BrowserModule,
@@ -22,7 +23,8 @@ import { VarsFileModule } from './modules/varsFile/varsFile.module';
     SharedModule,
     HomeModule,
     UserModule,
-    VarsFileModule
+    VarsFileModule,
+    CertificateModule
   ],
   providers: [],
   bootstrap: [AppComponent]

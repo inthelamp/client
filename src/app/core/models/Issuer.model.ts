@@ -1,7 +1,13 @@
+export enum Countries 
+{
+    CA = "CA", 
+    US = "US",
+}
+
 export interface Issuer
 {
     id: string;
-    country: string;
+    country: Countries;
     province: string;
     city: string;
     organization: string;

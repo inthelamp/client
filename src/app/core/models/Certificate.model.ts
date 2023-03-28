@@ -1,8 +1,7 @@
 export interface Certificate
 {
-    id: string;
-    caId: string;
+    id?: string;
+    varsFileId: string;
     commonName: string;
-    expiredAt: Date;
     createdAt: Date;
 }

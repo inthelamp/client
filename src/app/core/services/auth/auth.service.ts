@@ -66,10 +66,7 @@ export class AuthService {
       tap(async (res: any) => { 
 
         if (res) {
-          this.localStorageService.removeData("ACCESS_TOKEN");
-          this.localStorageService.removeData("EXPIRES_IN");
-          this.localStorageService.removeData("USER_ID");
-          this.localStorageService.removeData("ROLE");
+          this._removeLocalStorageData();
           this.authentificated.next(false);
           this.userStatus.next('Inactive');          
           this.userName = "";
@@ -92,7 +89,19 @@ export class AuthService {
     return  'token '.concat(this.getAccessToken());
   }
 
+  private _removeLocalStorageData() : void {
+    if (this.getUserId()) {
+      this.localStorageService.removeData("ACCESS_TOKEN");
+      this.localStorageService.removeData("EXPIRES_IN");
+      this.localStorageService.removeData("USER_ID");
+      this.localStorageService.removeData("ROLE");
+    }
+  }
+
   isAuthenticated() : boolean {
+    if (!this.authentificated.getValue()) {
+      this._removeLocalStorageData();
+    }
     return this.authentificated.getValue();
   }
 

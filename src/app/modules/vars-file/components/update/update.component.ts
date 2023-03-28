@@ -2,13 +2,13 @@ import { Component, OnInit } from '@angular/core';
 import { Subscription } from 'rxjs';
 import { FormBuilder, FormControl, FormGroup, Validators} from '@angular/forms';
 import { Router } from '@angular/router';
-import { MessageService, AuthService, Countries, Digests, Algorithms, Curves, VarsFile } from 'src/app/core';
-import { VarsFileService } from '../../services/varsFile.service';
+import { MessageService, AuthService, IssuerService, Countries, Digests, Algorithms, Curves, VarsFile } from 'src/app/core';
+import { VarsFileService } from '../../services/vars-file.service';
 
 @Component({
   selector: 'app-vars-update',
   templateUrl: './update.component.html',
-  styleUrls: ['../../varsFile.module.scss']
+  styleUrls: ['../../vars-file.module.scss']
 })
 export class UpdateComponent implements OnInit {
   private _subscription!: Subscription;
@@ -59,11 +59,12 @@ export class UpdateComponent implements OnInit {
   constructor(private authService: AuthService, 
     private messageService: MessageService,
     private varsFileService: VarsFileService,
+    private issuerService: IssuerService,
     private formBuilder: FormBuilder,
     private router: Router) { }
 
   ngOnInit(): void {
-    this._subscription = this.varsFileService.varsFileIdSelected.subscribe( id => {
+    this._subscription = this.issuerService.selectedId.subscribe( id => {
       if (id) {
         this.getVarsFile(id);
       }
@@ -80,13 +81,14 @@ export class UpdateComponent implements OnInit {
     this.varsFileService.getVarsFile(id, this.authService.getAuthString(), this.authService.getUserId()).subscribe({
       next: (res) => {
         this._varsFile = res.varsFile;
+        this.issuerService.selectedId.next("");
       },
       error: (e) => {
         console.log(e);
       }, 
       complete: () => {
         if (this._varsFile) {
-          this.populateForm(this._varsFile);
+          this.populateForm(this._varsFile);         
           console.log(`${id} is successfully retrieved.`)
         }
       }   
@@ -142,7 +144,7 @@ export class UpdateComponent implements OnInit {
   }
 
   onNewVarsSettings () {
-
+    this.router.navigateByUrl('vars/create');   
   }
 
   onSubmit() {

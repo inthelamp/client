@@ -2,12 +2,12 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators} from '@angular/forms';
 import { Router } from '@angular/router';
 import { MessageService, AuthService, Countries, Digests, Algorithms, Curves, VarsFile } from 'src/app/core';
-import { VarsFileService } from '../../services/varsFile.service';
+import { VarsFileService } from '../../services/vars-file.service';
 
 @Component({
   selector: 'app-vars-create',
   templateUrl: './create.component.html',
-  styleUrls: ['../../varsFile.module.scss']
+  styleUrls: ['../../vars-file.module.scss']
 })
 export class CreateComponent implements OnInit {
   submitted = false;
@@ -71,6 +71,10 @@ export class CreateComponent implements OnInit {
               this.router.navigateByUrl('home');     
         }
       });
+  }
+
+  onList() {
+    this.router.navigateByUrl('vars');     
   }
 
   onSubmit() {
