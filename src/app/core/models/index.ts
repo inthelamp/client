@@ -1,7 +1,7 @@
 export { Address } from './Address.model';
 export { VarsFile, Digests, Algorithms, Curves } from './VarsFile.model';
-export { Issuer, Countries } from './Issuer.model';
-export { Certificate } from './Certificate.model';
+export { Issuer, Countries, Statuses } from './Issuer.model';
+export { Certificate, Categories } from './Certificate.model';
 export { Client } from './Client.model';
 export { Feedback, FeedbackStatus } from './Feedback.model';
 export { FeedbackAttach } from './FeedbackAttach.model';

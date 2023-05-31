@@ -1,4 +1,5 @@
 <div class="vars-form">
+    <h3>Update Vars Settings</h3>
     <div class="top-buttons">
       <button mat-raised-button type="button" color="primary" (click)="onNewVarsSettings()">New Vars Settings</button> 
       <button mat-raised-button type="button" color="warn" (click)="onDelete()">Delete</button>   
@@ -9,7 +10,7 @@
         <mat-form-field appearance="fill">
           <mat-label>Country</mat-label>
           <mat-select placeholder="Select Country" [formControl]="country">
-            <mat-option *ngFor="let country of countries  | keyvalue" [value]="country.value">
+            <mat-option *ngFor="let country of countries  | keyvalue" [value]="country.key">
               {{country.value}}
             </mat-option>
           </mat-select>
@@ -53,7 +54,7 @@
         <mat-form-field appearance="fill">
           <mat-label>Algorithm</mat-label>
           <mat-select placeholder="Select Algorithm" [formControl]="algorithm">
-            <mat-option *ngFor="let algorithm of algorithms  | keyvalue" [value]="algorithm.value">
+            <mat-option *ngFor="let algorithm of algorithms  | keyvalue" [value]="algorithm.key">
               {{algorithm.value}}
             </mat-option>
           </mat-select>
@@ -61,7 +62,7 @@
         <mat-form-field appearance="fill">
           <mat-label>Curve</mat-label>
           <mat-select placeholder="Select Curve" [formControl]="curve">
-            <mat-option *ngFor="let curve of curves  | keyvalue" [value]="curve.value">
+            <mat-option *ngFor="let curve of curves  | keyvalue" [value]="curve.key">
               {{curve.value}}
             </mat-option>
           </mat-select>
@@ -69,7 +70,7 @@
         <mat-form-field appearance="fill">
           <mat-label>Digest</mat-label>
           <mat-select placeholder="Select Digest" [formControl]="digest">
-            <mat-option *ngFor="let digest of digests  | keyvalue" [value]="digest.value">
+            <mat-option *ngFor="let digest of digests  | keyvalue" [value]="digest.key">
               {{digest.value}}
             </mat-option>
           </mat-select>
@@ -94,12 +95,15 @@
           <input type="number" matInput placeholder="CRL days" [formControl]="crlDays" required>
           <mat-error *ngIf="(crlDays.touched || submitted) && crlDays.hasError('required')">A valid CRL days value is required</mat-error>
         </mat-form-field> 
-        <!-- <mat-form-field appearance="fill">
-          <mat-label>Common name</mat-label>
-          <input matInput placeholder="Common name" [formControl]="commonName" required>
-          <mat-error *ngIf="(commonName.touched || submitted) && commonName.hasError('required')">Common name is required</mat-error>
-          <mat-error *ngIf="commonName.touched && commonName.hasError('invalid')">Enter a valid common name</mat-error>
-        </mat-form-field>        -->
+        <mat-form-field appearance="fill">
+          <mat-label>Status</mat-label>
+          <mat-select placeholder="Select Status" [formControl]="status">
+            <mat-option *ngFor="let status of statuses  | keyvalue" [value]="status.key">
+              {{status.value}}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>        
+        <!-- It couldn't update common name, but it'd better delete and create again -->
         <p>   
           <button mat-raised-button type="submit" color="primary">Update Vars Settings</button>  
         </p>

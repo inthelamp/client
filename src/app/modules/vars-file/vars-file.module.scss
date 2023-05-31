@@ -31,7 +31,7 @@
       text-align: left;
 
       .mat-column-common-name {
-        width: 16%;
+        width: 10%;
       }
       
       .mat-column-country {
@@ -39,36 +39,68 @@
       }
       
       .mat-column-province {
-        width: 15%;
+        width: 10%;
       }
       
       .mat-column-city {
-        width: 15%;
+        width: 10%;
       }    
   
       .mat-column-organization {
-        width: 16%;
+        width: 11%;
       }    
   
       .mat-column-organizational-unit {
-        width: 16%;
+        width: 11%;
       }    
   
       .mat-column-email {
-        width: 17%;
+        width: 11%;
       }    
+
+      .mat-column-init {
+        width: 5%;
+      }    
+
+      .mat-column-CA {
+        width: 5%;
+      }    
+
+      .mat-column-DH {
+        width: 5%;
+      }   
   
-      .mat-row .mat-cell {
+      .mat-column-server {
+        width: 5%;
+      }   
+
+      .mat-column-TA {
+        width: 5%;
+      }  
+
+      .mat-column-client {
+        width: 5%;
+      }    
+
+      .mat-row .mat-column-common-name,
+      .mat-row .mat-column-organization
+      {
         cursor: pointer;
       }
       
-      .mat-row:hover .mat-cell {
-        background-color: black;
+      .mat-row:hover .mat-column-common-name {
+        background-color: rgb(156, 231, 16);
         color: white;
+        font-weight: bold;
+      }
+
+      .mat-row:hover .mat-column-organization {
+        background-color: grey;
+        color: white;
+        font-weight: bold;
       }
     }
   }
-
 
   .vars-list {
     text-align: center;

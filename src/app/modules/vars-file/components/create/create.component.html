@@ -1,12 +1,10 @@
 <div class="vars-form">
-  <div class="top-buttons">
-    <button mat-raised-button type="button" color="primary" (click)="onList()">List</button>   
-  </div>
+  <h3>Create EasyRSA Vars Settings</h3>
     <Form [formGroup]="varsFileForm" (ngSubmit)="onSubmit()">
         <mat-form-field appearance="fill">
           <mat-label>Country</mat-label>
           <mat-select placeholder="Select Country" [formControl]="country">
-            <mat-option *ngFor="let country of countries  | keyvalue" [value]="country.value">
+            <mat-option *ngFor="let country of countries | keyvalue" [value]="country.key">
               {{country.value}}
             </mat-option>
           </mat-select>
@@ -50,7 +48,7 @@
         <mat-form-field appearance="fill">
           <mat-label>Algorithm</mat-label>
           <mat-select placeholder="Select Algorithm" [formControl]="algorithm">
-            <mat-option *ngFor="let algorithm of algorithms  | keyvalue" [value]="algorithm.value">
+            <mat-option *ngFor="let algorithm of algorithms | keyvalue" [value]="algorithm.key">
               {{algorithm.value}}
             </mat-option>
           </mat-select>
@@ -58,7 +56,7 @@
         <mat-form-field appearance="fill">
           <mat-label>Curve</mat-label>
           <mat-select placeholder="Select Curve" [formControl]="curve">
-            <mat-option *ngFor="let curve of curves  | keyvalue" [value]="curve.value">
+            <mat-option *ngFor="let curve of curves | keyvalue" [value]="curve.key">
               {{curve.value}}
             </mat-option>
           </mat-select>
@@ -66,7 +64,7 @@
         <mat-form-field appearance="fill">
           <mat-label>Digest</mat-label>
           <mat-select placeholder="Select Digest" [formControl]="digest">
-            <mat-option *ngFor="let digest of digests  | keyvalue" [value]="digest.value">
+            <mat-option *ngFor="let digest of digests | keyvalue" [value]="digest.key">
               {{digest.value}}
             </mat-option>
           </mat-select>

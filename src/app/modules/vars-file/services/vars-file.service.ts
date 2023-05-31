@@ -24,7 +24,7 @@ export class VarsFileService {
   }
 
   // Saving review content into server database
-  createVarsFile(varsFile: VarsFile, authString: string, userId: string): Observable<any> {
+  createVarsFile(varsFile: {}, authString: string, userId: string): Observable<any> {
     return this.httpClient.post<any>(`${environment.APP_SERVER_BASE_URL}/varsFiles/create`, varsFile, { headers: new HttpHeaders ({ authorization: authString, userid: userId })}).pipe(
       tap(async _ => {
         console.log("Creating vars settings file is processed!"); 
@@ -34,7 +34,7 @@ export class VarsFileService {
   }
 
   // Updating a vars settings file
-  updateVarsFile(varsFile: VarsFile, authString: string, userId: string): Observable<any> {
+  updateVarsFile(varsFile: {}, authString: string, userId: string): Observable<any> {
     return this.httpClient.post<any>(`${environment.APP_SERVER_BASE_URL}/varsFiles/update`, varsFile, { headers: new HttpHeaders ({ authorization: authString, userid: userId })}).pipe(
       tap(async _ => {
         console.log("Updating vars settings file is processed!");    

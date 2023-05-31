@@ -7,16 +7,9 @@
       </a>
     </div>
     <div *ngIf="isAuthenticated()"> 
-      <button mat-button [matMenuTriggerFor]="vars">EasyRSA Vars Settings</button>
-      <mat-menu #vars="matMenu">
-        <button mat-menu-item [routerLink]="'/vars'">List</button>
-        <button mat-menu-item [routerLink]="'/vars/create'">Create</button>
-      </mat-menu>
-      <button mat-button [matMenuTriggerFor]="certificates">EasyRSA Certificates</button>
-      <mat-menu #certificates="matMenu">
-        <button mat-menu-item [routerLink]="'/certificates'">List</button>
-        <button mat-menu-item [routerLink]="'/certificates/createca'">Create</button>
-      </mat-menu>
+      <a mat-button (click)="onClick()" [routerLink]="'/vars/create'">Create EasyRSA</a>
+      <a mat-button (click)="onClick()" [routerLink]="'/vars'">EasyRSA Vars Settings</a>
+      <a mat-button (click)="onClick()" [routerLink]="'/certificates'">EasyRSA Certificates</a>
     </div>
     <div class="nav-login" *ngIf="!isAuthenticated()">
       <a mat-button (click)="onClick()" [routerLink]="'/signin'"> Sign in </a>

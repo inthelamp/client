@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Subscription } from 'rxjs';
 import { FormBuilder, FormControl, FormGroup, Validators} from '@angular/forms';
 import { Router } from '@angular/router';
-import { MessageService, AuthService, IssuerService, Countries, Digests, Algorithms, Curves, VarsFile } from 'src/app/core';
+import { MessageService, AuthService, IssuerService, Statuses, Countries, Digests, Algorithms, Curves, VarsFile } from 'src/app/core';
 import { VarsFileService } from '../../services/vars-file.service';
 
 @Component({
@@ -18,6 +18,7 @@ export class UpdateComponent implements OnInit {
   algorithms = Algorithms;
   curves = Curves;
   digests = Digests;
+  statuses = Statuses;
   submitted = false;
 
   id = new FormControl('', {nonNullable: true});
@@ -36,6 +37,7 @@ export class UpdateComponent implements OnInit {
   certRenewDays = new FormControl('', {validators: [Validators.required], nonNullable: true});
   crlDays = new FormControl('', {validators: [Validators.required], nonNullable: true});
   commonName = new FormControl('', {validators: [Validators.required], nonNullable: true});
+  status = new FormControl('', {validators: [Validators.required], nonNullable: true});
 
   varsFileForm: FormGroup = this.formBuilder.group({
     id: this.id,
@@ -54,6 +56,7 @@ export class UpdateComponent implements OnInit {
     certRenewDays : this.certRenewDays,
     crlDays : this.crlDays,
     commonName : this.commonName,
+    status: this.status,
   });
 
   constructor(private authService: AuthService, 
@@ -87,43 +90,26 @@ export class UpdateComponent implements OnInit {
         console.log(e);
       }, 
       complete: () => {
-        if (this._varsFile) {
-          this.populateForm(this._varsFile);         
-          console.log(`${id} is successfully retrieved.`)
-        }
+        this.populateForm(); 
+        console.log(`${id} is successfully retrieved.`)
       }   
     });
   }  
 
   // Populating vars settings received into the form
-  populateForm(varsFile: VarsFile) {
-    this.varsFileForm.patchValue({
-      id: varsFile.id,      
-      country: (<any>Countries)[varsFile.country],
-      province: varsFile.province,
-      city: varsFile.city,
-      organization: varsFile.organization,
-      email: varsFile.email,
-      organizationalUnit: varsFile.organizationalUnit,
-      keySize: Number(varsFile.keySize),
-      algorithm: (<any>Algorithms)[varsFile.algorithm],
-      curve: (<any>Curves)[varsFile.curve],
-      digest: (<any>Digests)[varsFile.digest],
-      caExpire: Number(varsFile.caExpire),
-      certExpire: Number(varsFile.certExpire),
-      certRenewDays: Number(varsFile.certRenewDays),
-      crlDays: Number(varsFile.crlDays),
-      commonName: varsFile.commonName,      
-    });
+  populateForm() {
+    if (this._varsFile) {
+      this.varsFileForm.patchValue(this._varsFile);   
+    }
   }
 
-  updateVarsFile(varsFile: VarsFile) : void {
+  updateVarsFile(varsFile: {}) : void {
     this.varsFileService.updateVarsFile(varsFile, this.authService.getAuthString(), this.authService.getUserId()).subscribe({
         error: (e) => {
             console.log(e);
         },
         complete: () => {
-              this.messageService.message = 'Sucessfully create vars file!';
+              this.messageService.message = 'Sucessfully updated vars file!';
               // Returning to Home
               this.router.navigateByUrl('vars');     
         }
@@ -151,25 +137,26 @@ export class UpdateComponent implements OnInit {
     this.submitted = true;
     if (this.varsFileForm.valid) {
 
-      const varsFile: VarsFile = {
+      const varsFile = {
         id: this.id.value,
-        country: (<any>Countries)[this.country.value],
+        country: this.country.value,
         province: this.province.value,
         city: this.city.value,
         organization: this.organization.value,
         email: this.email.value,
         organizationalUnit: this.organizationalUnit.value,
         keySize: Number(this.keySize.value),
-        algorithm: (<any>Algorithms)[this.algorithm.value],
-        curve: (<any>Curves)[this.curve.value],
-        digest: (<any>Digests)[this.digest.value],
+        algorithm: this.algorithm.value,
+        curve: this.curve.value,
+        digest: this.digest.value,
         caExpire: Number(this.caExpire.value),
         certExpire: Number(this.certExpire.value),
         certRenewDays: Number(this.certRenewDays.value),
         crlDays: Number(this.crlDays.value),
-        commonName: this.commonName.value
+        commonName: this.commonName.value,
+        status: this.status.value,
       }
-      
+
       this.updateVarsFile(varsFile);
     }
   }  

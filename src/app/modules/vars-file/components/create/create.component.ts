@@ -60,7 +60,7 @@ export class CreateComponent implements OnInit {
   ngOnInit(): void {
   }
 
-  createVarsFile(varsFile: VarsFile){
+  createVarsFile(varsFile: {}){
     this.varsFileService.createVarsFile(varsFile, this.authService.getAuthString(), this.authService.getUserId()).subscribe({
         error: (e) => {
             console.log(e);
@@ -72,31 +72,27 @@ export class CreateComponent implements OnInit {
         }
       });
   }
-
-  onList() {
-    this.router.navigateByUrl('vars');     
-  }
-
+  
   onSubmit() {
     this.submitted = true;
     if (this.varsFileForm.valid) {
 
       const varsFile: VarsFile = {
-        country: (<any>Countries)[this.country.value],
+        country: this.country.value,
         province: this.province.value,
         city: this.city.value,
         organization: this.organization.value,
         email: this.email.value,
         organizationalUnit: this.organizationalUnit.value,
         keySize: Number(this.keySize.value),
-        algorithm: (<any>Algorithms)[this.algorithm.value],
-        curve: (<any>Curves)[this.curve.value],
-        digest: (<any>Digests)[this.digest.value],
+        algorithm: this.algorithm.value,
+        curve: this.curve.value,
+        digest: this.digest.value,
         caExpire: Number(this.caExpire.value),
         certExpire: Number(this.certExpire.value),
         certRenewDays: Number(this.certRenewDays.value),
         crlDays: Number(this.crlDays.value),
-        commonName: this.commonName.value
+        commonName: this.commonName.value,
       }
       
       this.createVarsFile(varsFile);

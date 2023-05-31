@@ -31,7 +31,7 @@
       text-align: left;
 
       .mat-column-common-name {
-        width: 16%;
+        width: 13;
       }
       
       .mat-column-country {
@@ -39,31 +39,57 @@
       }
       
       .mat-column-province {
-        width: 15%;
+        width: 12%;
       }
       
       .mat-column-city {
-        width: 15%;
+        width: 12%;
       }    
   
       .mat-column-organization {
-        width: 16%;
+        width: 13%;
       }    
   
       .mat-column-organizational-unit {
-        width: 16%;
+        width: 12%;
       }    
   
       .mat-column-email {
-        width: 17%;
+        width: 12%;
       }    
+
+      .mat-column-CA {
+        width: 5%;
+      }    
+
+      .mat-column-DH {
+        width: 5%;
+      }   
   
-      .mat-row .mat-cell {
+      .mat-column-Server {
+        width: 5%;
+      }   
+
+      .mat-column-Clients {
+        width: 5%;
+      }   
+
+      .mat-row .mat-column-common-name,
+      .mat-row .mat-column-country,
+      .mat-row .mat-column-province,
+      .mat-row .mat-column-city,
+      .mat-row .mat-column-organization
+      {
         cursor: pointer;
       }
       
-      .mat-row:hover .mat-cell {
-        background-color: black;
+      .mat-row:hover .mat-column-common-name, 
+      .mat-row:hover .mat-column-country,
+      .mat-row:hover .mat-column-province,
+      .mat-row:hover .mat-column-city,
+      .mat-row:hover .mat-column-organization
+      {
+        background-color: grey;
         color: white;
       }
     }
