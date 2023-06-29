@@ -4,9 +4,9 @@ import { Router } from '@angular/router';
 import { MessageService, AuthService, CertificateService } from 'src/app/core';
 
 @Component({
-  selector: 'app-create',
+  selector: 'app-certs-create',
   templateUrl: './create.component.html',
-  styleUrls: ['../../client.module.scss']
+  styleUrls: ['../../certificates.module.scss']
 })
 export class CreateComponent implements OnInit {
   submitted = false;
@@ -19,30 +19,30 @@ export class CreateComponent implements OnInit {
 
   constructor(private authService: AuthService, 
     private messageService: MessageService,
-    private certificateService: CertificateService,
+    public certificateService: CertificateService,
     private formBuilder: FormBuilder,
     private router: Router) { }
 
   ngOnInit(): void {
   }
 
-  createClient(name: string, id: string, commonName: string){
-    this.certificateService.generateClient(name, id, commonName, this.authService.getAuthString(), this.authService.getUserId()).subscribe({
-        error: (e) => {
-            console.log(e);
-        },
-        complete: () => {
-              this.messageService.message = 'Sucessfully create vars file!';
-              // Returning to Home
-              this.router.navigateByUrl('home');     
-        }
-      });
+  createCertificate(name: string){
+    this.certificateService.generateCertificate(name, this.authService.getAuthString(), this.authService.getUserId()).subscribe({
+      error: (e) => {
+          console.log(e);
+      },
+      complete: () => {
+            this.messageService.message = 'Sucessfully create a certificate!';
+            // Returning to Home
+            this.router.navigateByUrl('home');     
+      }
+    });
   }
   
 
   onSubmit() {
     if (this.createForm.valid) {      
-      this.createClient(this.name.value, '2', 's');
+      this.createCertificate(this.name.value);
     }
   }
 }

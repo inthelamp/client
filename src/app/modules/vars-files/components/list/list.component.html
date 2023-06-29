@@ -7,7 +7,7 @@
         <!-- Common Name Column -->
         <ng-container matColumnDef="common-name">
             <th mat-header-cell *matHeaderCellDef> Common Name </th>
-            <td mat-cell *matCellDef="let issuer" (click)="onListCertificates(issuer.id)"> {{issuer.commonName}} </td>
+            <td mat-cell *matCellDef="let issuer" (click)="toggleListCertificates(issuer)"> {{issuer.commonName}} </td>
         </ng-container>
 
         <!-- Country Column -->
@@ -31,7 +31,7 @@
         <!-- Organization Column -->
         <ng-container matColumnDef="organization">
             <th mat-header-cell *matHeaderCellDef> Organization </th>
-            <td mat-cell *matCellDef="let issuer" (click)="onClick(issuer.id)"> {{issuer.organization}} </td>
+            <td mat-cell *matCellDef="let issuer" (click)="onUpdate(issuer.id)"> {{issuer.organization}} </td>
         </ng-container>
 
         <!-- Organizational Unit Column -->
@@ -74,7 +74,7 @@
         <ng-container matColumnDef="server">
             <th mat-header-cell *matHeaderCellDef> Server </th>
             <td mat-cell *matCellDef="let issuer"><button mat-raised-button type="button" color="primary" 
-                [disabled]="issuer.status != 'Generated_DH'" (click)="onGenerateServerCertificate(issuer.id, issuer.commonName)">Server</button>
+                [disabled]="issuer.status != 'Generated_DH'" (click)="onGenerateServer(issuer.id, issuer.commonName)">Server</button>
             </td>  
         </ng-container>  
 
@@ -91,20 +91,25 @@
         <!-- Client Column -->
         <ng-container matColumnDef="client">
             <th mat-header-cell *matHeaderCellDef> Client </th>
-            <td mat-cell *matCellDef="let issuer"><button mat-raised-button type="button" color="primary" 
-                [disabled]="issuer.status != 'Generated_TA'" (click)="onGenerateClientCertificates(issuer.id, issuer.commonName)">Client</button>
+            <td mat-cell *matCellDef="let issuer"><button mat-raised-button type="button" [color]="issuer.status != 'Generated_TA' ? 'accent' : 'primary'" 
+                (click)="onGenerateClient(issuer.id, issuer.commonName)">Client</button>
             </td>  
         </ng-container> 
 
         <!-- List of clients -->
-        <!-- <ng-container matColumnDef="expandedDetail">       
+        <ng-container matColumnDef="certificates">       
             <td mat-cell *matCellDef="let issuer " [attr.colspan]="displayedColumns.length">
-                <div class="example-element-detail" *ngIf="issuer.status == 'Generated_Client'" [@detailExpand]=" issuer == expandedElement ? 'expanded' : 'collapsed'">
-                    <div class="inner-table mat-elevation-z8" *ngIf="expandedElement">
-                        <table #innerTables mat-table #innerSort="matSort" [dataSource]="clients!" matSort>
-                            <ng-container matColumnDef="{{innerColumn}}" *ngFor="let innerColumn of innerDisplayedColumns">
-                            <th mat-header-cell *matHeaderCellDef mat-sort-header> {{innerColumn}} </th>
-                            <td mat-cell *matCellDef="let element"> {{element[innerColumn]}} </td>
+                <div  *ngIf="(issuer.status == 'Generated_Server' || issuer.status == 'Generated_TA' || issuer.status == 'Generated_Client')"
+                                                     [@detailExpand]=" isRowExpanded ? 'expanded' : 'collapsed'">
+                    <div class="mat-elevation-z8" *ngIf="isRowExpanded">
+                        <table #innerTables mat-table [dataSource]="certificates!">
+                            <ng-container matColumnDef="commonName">
+                                <th mat-header-cell *matHeaderCellDef> Common name </th>
+                                <td mat-cell *matCellDef="let certificate"> {{certificate.commonName}} </td>
+                            </ng-container>
+                            <ng-container matColumnDef="category">
+                                <th mat-header-cell *matHeaderCellDef> Category </th>
+                                <td mat-cell *matCellDef="let certificate"> {{certificate.category}} </td>
                             </ng-container>
                             <tr mat-header-row *matHeaderRowDef="innerDisplayedColumns"></tr>
                             <tr mat-row *matRowDef="let row; columns: innerDisplayedColumns;"></tr>
@@ -112,12 +117,10 @@
                     </div>
                 </div>
             </td>  
-        </ng-container>    -->
+        </ng-container>   
           
         <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
-        <!-- <tr mat-row *matRowDef="let issuer; columns: displayedColumns;" (click)="toggleRow(issuer)"> </tr> -->
-        <!-- <tr mat-row *matRowDef="let row; columns: ['expandedDetail']" class="example-detail-row"></tr> -->
-
-        <tr mat-row *matRowDef="let issuer; columns: displayedColumns;" (click)="onClick(issuer.id)"></tr>
+        <tr mat-row *matRowDef="let issuer; columns: displayedColumns;"> </tr>
+        <tr mat-row *matRowDef="let row; columns: ['certificates']"></tr>
     </table>
 </div>

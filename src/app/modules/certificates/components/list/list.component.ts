@@ -1,9 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 
 @Component({
-  selector: 'app-list',
+  selector: 'app-certs-list',
   templateUrl: './list.component.html',
-  styleUrls: ['../../client.module.scss']
+  styleUrls: ['../../certificates.module.scss']
 })
 export class ListComponent implements OnInit {
 

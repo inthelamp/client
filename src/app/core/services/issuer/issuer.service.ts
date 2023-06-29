@@ -8,7 +8,7 @@ import { MessageService } from 'src/app/core/services/message/message.service';
   providedIn: 'root'
 })
 export class IssuerService {
-  selectedId = new BehaviorSubject("");
+  varsFileIdSelected = new BehaviorSubject("");
 
   constructor(private httpClient: HttpClient,
     private messageService: MessageService) { }

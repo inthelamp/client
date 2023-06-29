@@ -8,7 +8,7 @@ import { VarsFileService } from '../../services/vars-file.service';
 @Component({
   selector: 'app-vars-update',
   templateUrl: './update.component.html',
-  styleUrls: ['../../vars-file.module.scss']
+  styleUrls: ['../../vars-files.module.scss']
 })
 export class UpdateComponent implements OnInit {
   private _subscription!: Subscription;
@@ -67,7 +67,7 @@ export class UpdateComponent implements OnInit {
     private router: Router) { }
 
   ngOnInit(): void {
-    this._subscription = this.issuerService.selectedId.subscribe( id => {
+    this._subscription = this.issuerService.varsFileIdSelected.subscribe( id => {
       if (id) {
         this.getVarsFile(id);
       }
@@ -84,7 +84,7 @@ export class UpdateComponent implements OnInit {
     this.varsFileService.getVarsFile(id, this.authService.getAuthString(), this.authService.getUserId()).subscribe({
       next: (res) => {
         this._varsFile = res.varsFile;
-        this.issuerService.selectedId.next("");
+        this.issuerService.varsFileIdSelected.next("");
       },
       error: (e) => {
         console.log(e);

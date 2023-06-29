@@ -7,7 +7,7 @@ import { VarsFileService } from '../../services/vars-file.service';
 @Component({
   selector: 'app-vars-create',
   templateUrl: './create.component.html',
-  styleUrls: ['../../vars-file.module.scss']
+  styleUrls: ['../../vars-files.module.scss']
 })
 export class CreateComponent implements OnInit {
   submitted = false;

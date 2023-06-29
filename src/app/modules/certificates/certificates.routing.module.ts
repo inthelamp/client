@@ -6,11 +6,11 @@ import { ListComponent  } from './components/list/list.component';
  
 const routes: Routes = [
     { path: 'certificates', component: ListComponent, canActivate: [AuthGuardService] },
-    { path: 'certificates/createca', component: CreateComponent, canActivate: [AuthGuardService] },
+    { path: 'certificates/create', component: CreateComponent, canActivate: [AuthGuardService] },
 ];
  
 @NgModule({
   imports: [RouterModule.forChild(routes)],
   exports: [RouterModule]
 })
-export class CertificateRoutingModule {}
+export class CertificatesRoutingModule {}

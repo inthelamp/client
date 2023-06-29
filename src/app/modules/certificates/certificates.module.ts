@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { SharedModule } from 'src/app/shared/shared.module';
 import { AuthService, AuthGuardService, LocalStorageService, IssuerService, CertificateService } from 'src/app/core';
-import { CertificateRoutingModule } from './client.routing.module';
+import { CertificatesRoutingModule } from './certificates.routing.module';
 import { CreateComponent  } from './components/create/create.component';
 import { ListComponent  } from './components/list/list.component';
 
@@ -9,8 +9,8 @@ import { ListComponent  } from './components/list/list.component';
   declarations: [CreateComponent, ListComponent],
   providers: [AuthService, AuthGuardService, LocalStorageService, CertificateService, IssuerService, CertificateService],
   imports: [ 
-    CertificateRoutingModule,
+    CertificatesRoutingModule,
     SharedModule,
   ]
 })
-export class ClientModule { }
+export class CertificatesModule { }

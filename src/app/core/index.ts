@@ -1,2 +1,2 @@
-export { Feedback, JwtResponse, User, Certificate, Categories, VarsFile, Issuer, Client, Statuses, Countries, Digests, Algorithms, Curves } from './models';
+export { Feedback, JwtResponse, User, Certificate, DeviceCertificate, Categories, VarsFile, Issuer, Client, Statuses, Countries, Digests, Algorithms, Curves } from './models';
 export { AuthService, MessageService, LocalStorageService, AuthGuardService, IssuerService, CertificateService } from './services';

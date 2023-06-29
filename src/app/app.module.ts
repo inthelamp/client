@@ -7,8 +7,8 @@ import { CoreModule } from './core/core.module';
 import { SharedModule } from './shared/shared.module';
 import { HomeModule } from './modules/home/home.module';
 import { UserModule } from './modules/users/user.module';
-import { VarsFileModule } from './modules/vars-file/vars-file.module';
-import { ClientModule } from './modules/client/client.module';
+import { VarsFilesModule } from './modules/vars-files/vars-files.module';
+import { CertificatesModule } from './modules/certificates/certificates.module';
 
 
 @NgModule({
@@ -23,8 +23,8 @@ import { ClientModule } from './modules/client/client.module';
     SharedModule,
     HomeModule,
     UserModule,
-    VarsFileModule,
-    ClientModule
+    VarsFilesModule,
+    CertificatesModule
   ],
   providers: [],
   bootstrap: [AppComponent]

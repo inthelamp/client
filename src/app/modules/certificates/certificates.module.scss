@@ -12,6 +12,12 @@
       padding-bottom: 1vmin;
     }
 
+    .show {
+      background-color: gray;
+      color: white;
+      margin-bottom: 1rem;
+    }
+
     form {
       display: flex;
       flex-direction: column;

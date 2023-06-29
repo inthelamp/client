@@ -1,0 +1,21 @@
+<div class="certificate-form">
+    <h3>Generate Certificate</h3>
+    <mat-grid-list class="show" cols="4" rowHeight="4:1">
+      <mat-grid-tile colspan="1">Common name:</mat-grid-tile>
+      <mat-grid-tile colspan="3">{{ this.certificateService.commonNameSelected.value }}</mat-grid-tile>
+      <mat-grid-tile colspan="1">Certificate type:</mat-grid-tile>
+      <mat-grid-tile colspan="3">{{ this.certificateService.certificateCategory.value }}</mat-grid-tile>
+    </mat-grid-list>    
+    <label for="name">Name</label>
+      <Form [formGroup]="createForm" (ngSubmit)="onSubmit()">
+          <mat-form-field appearance="fill">
+              <mat-label>Name</mat-label>
+              <input matInput placeholder="Name" [formControl]="name" required>
+              <mat-error *ngIf="(name.touched || submitted) && name.hasError('required')">Certificate name is required</mat-error>
+              <mat-error *ngIf="name.touched && name.hasError('invalid')">Enter a valid certificate name</mat-error>
+          </mat-form-field>      
+          <p>   
+            <button mat-raised-button type="submit" color="primary">Create</button>  
+          </p>
+      </Form>
+  </div>
