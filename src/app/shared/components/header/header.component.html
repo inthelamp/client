@@ -9,7 +9,6 @@
     <div *ngIf="isAuthenticated()"> 
       <a mat-button (click)="onClick()" [routerLink]="'/vars/create'">Create EasyRSA</a>
       <a mat-button (click)="onClick()" [routerLink]="'/vars'">EasyRSA Vars Settings</a>
-      <a mat-button (click)="onClick()" [routerLink]="'/certificates'">EasyRSA Certificates</a>
     </div>
     <div class="nav-login" *ngIf="!isAuthenticated()">
       <a mat-button (click)="onClick()" [routerLink]="'/signin'"> Sign in </a>

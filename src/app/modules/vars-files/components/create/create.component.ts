@@ -19,9 +19,9 @@ export class CreateComponent implements OnInit {
   
   country = new FormControl(Countries.CA, {validators: [Validators.required], nonNullable: true});
   province = new FormControl('Ontario', {validators: [Validators.required], nonNullable: true});
-  city = new FormControl('London', {validators: [Validators.required], nonNullable: true});
-  organization = new FormControl('In The Lamp', {validators: [Validators.required], nonNullable: true});
-  email = new FormControl('admin@inthelamp.ddns.net', {validators: [Validators.required, Validators.email], nonNullable: true});
+  city = new FormControl('Toronto', {validators: [Validators.required], nonNullable: true});
+  organization = new FormControl('ABC123 Company', {validators: [Validators.required], nonNullable: true});
+  email = new FormControl('admin@abc123.com', {validators: [Validators.required, Validators.email], nonNullable: true});
   organizationalUnit = new FormControl('Support', {validators: [Validators.required], nonNullable: true});
   keySize = new FormControl('2048', {validators: [Validators.required], nonNullable: true});
   algorithm = new FormControl(Algorithms.ec, {validators: [Validators.required], nonNullable: true});
@@ -31,7 +31,7 @@ export class CreateComponent implements OnInit {
   certExpire = new FormControl('1080', {validators: [Validators.required], nonNullable: true});
   certRenewDays = new FormControl('30', {validators: [Validators.required], nonNullable: true});
   crlDays = new FormControl('180', {validators: [Validators.required], nonNullable: true});
-  commonName = new FormControl('inthelamp.ddns.net', {validators: [Validators.required], nonNullable: true});
+  commonName = new FormControl('abc123.com', {validators: [Validators.required], nonNullable: true});
 
   varsFileForm: FormGroup = this.formBuilder.group({
     country : this.country,
