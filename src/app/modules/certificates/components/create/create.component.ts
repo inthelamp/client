@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators} from '@angular/forms';
 import { Router } from '@angular/router';
-import { MessageService, AuthService, CertificateService } from 'src/app/core';
+import { MessageService, AuthService, CertificateService, Categories } from 'src/app/core';
 
 @Component({
   selector: 'app-certs-create',
@@ -11,7 +11,7 @@ import { MessageService, AuthService, CertificateService } from 'src/app/core';
 export class CreateComponent implements OnInit {
   submitted = false;
 
-  name = new FormControl('client', {validators: [Validators.required], nonNullable: true});
+  name = new FormControl(this.certificateService.certificateCategory.value == Categories.Client ? 'client1' : 'server1', {validators: [Validators.required], nonNullable: true});
 
   createForm: FormGroup = this.formBuilder.group({
     name : this.name,

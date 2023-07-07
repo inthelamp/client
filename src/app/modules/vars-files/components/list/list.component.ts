@@ -21,16 +21,16 @@ export class ListComponent implements OnInit {
 
   certificates: Certificate[] | null = null;
   issuers!: Issuer[];
+  expandIssuerId: string | null = null;
   isSeverServiceRequested: boolean = false;
   isServerServiceCompleted: boolean = false;
-  isRowExpanded: boolean = false;
 
   displayedColumns: string[] = ['common-name', 'country', 'province', 'city', 'organization', 'organizational-unit', 
                                 'email', 'init', 'CA', 'DH', 'server', 'TA', 'client'];
   innerDisplayedColumns: string[] = ['commonName', 'category'];
 
   constructor(private authService: AuthService, 
-    private issuerService: IssuerService,
+    public issuerService: IssuerService,
     private certificateService: CertificateService,
     private router: Router) { }
 
@@ -55,12 +55,15 @@ export class ListComponent implements OnInit {
   }
 
   toggleListCertificates(issuer: Issuer) {
-    if ((issuer.status == Statuses.Generated_Server || issuer.status == Statuses.Generated_TA || issuer.status == Statuses.Generated_Client) && this.certificates != null) {
+    if ((issuer.status == Statuses.Generated_Server || issuer.status == Statuses.Generated_TA || issuer.status == Statuses.Generated_Client) 
+      && this.expandIssuerId == issuer.id) {
       this.certificates = null;
-      this.isRowExpanded = false;
-    } else if ((issuer.status == Statuses.Generated_Server || issuer.status == Statuses.Generated_TA || issuer.status == Statuses.Generated_Client) && this.certificates == null) {
+      this.expandIssuerId = null;
+    } else if ((issuer.status == Statuses.Generated_Server || issuer.status == Statuses.Generated_TA || issuer.status == Statuses.Generated_Client) 
+      && (this.expandIssuerId == null || this.expandIssuerId != issuer.id)) {
       this.getCertificates(issuer.id);
-      this.isRowExpanded = true;
+      this.issuerService.varsFileIdSelected.next(issuer.id);
+      this.expandIssuerId = issuer.id;
     }
   }
 

@@ -2,9 +2,9 @@
     <h3>Generate Certificate</h3>
     <mat-grid-list class="show" cols="4" rowHeight="4:1">
       <mat-grid-tile colspan="1">Common name:</mat-grid-tile>
-      <mat-grid-tile colspan="3">{{ this.certificateService.commonNameSelected.value }}</mat-grid-tile>
+      <mat-grid-tile colspan="3">{{ certificateService.commonNameSelected.value }}</mat-grid-tile>
       <mat-grid-tile colspan="1">Certificate type:</mat-grid-tile>
-      <mat-grid-tile colspan="3">{{ this.certificateService.certificateCategory.value }}</mat-grid-tile>
+      <mat-grid-tile colspan="3">{{ certificateService.certificateCategory.value }}</mat-grid-tile>
     </mat-grid-list>    
     <label for="name">Name</label>
       <Form [formGroup]="createForm" (ngSubmit)="onSubmit()">

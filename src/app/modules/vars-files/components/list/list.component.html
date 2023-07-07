@@ -91,7 +91,7 @@
         <!-- Client Column -->
         <ng-container matColumnDef="client">
             <th mat-header-cell *matHeaderCellDef> Client </th>
-            <td mat-cell *matCellDef="let issuer"><button mat-raised-button type="button" [color]="issuer.status != 'Generated_TA' ? 'accent' : 'primary'" 
+            <td mat-cell *matCellDef="let issuer"><button mat-raised-button type="button" [color]="issuer.status == 'Generated_Client' ? 'accent' : 'primary'" 
                 (click)="onGenerateClient(issuer.id, issuer.commonName)">Client</button>
             </td>  
         </ng-container> 
@@ -99,9 +99,9 @@
         <!-- List of clients -->
         <ng-container matColumnDef="certificates">       
             <td mat-cell *matCellDef="let issuer " [attr.colspan]="displayedColumns.length">
-                <div  *ngIf="(issuer.status == 'Generated_Server' || issuer.status == 'Generated_TA' || issuer.status == 'Generated_Client')"
-                                                     [@detailExpand]=" isRowExpanded ? 'expanded' : 'collapsed'">
-                    <div class="mat-elevation-z8" *ngIf="isRowExpanded">
+                <div  *ngIf="issuerService.varsFileIdSelected.value == issuer.id &&  (issuer.status == 'Generated_Server' || issuer.status == 'Generated_TA' || issuer.status == 'Generated_Client')"
+                                                     [@detailExpand]=" expandIssuerId == issuer.id ? 'expanded' : 'collapsed'">
+                    <div class="mat-elevation-z8" *ngIf="expandIssuerId">
                         <table #innerTables mat-table [dataSource]="certificates!">
                             <ng-container matColumnDef="commonName">
                                 <th mat-header-cell *matHeaderCellDef> Common name </th>
@@ -121,6 +121,6 @@
           
         <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
         <tr mat-row *matRowDef="let issuer; columns: displayedColumns;"> </tr>
-        <tr mat-row *matRowDef="let row; columns: ['certificates']"></tr>
+        <tr mat-row *matRowDef="let row; columns: ['certificates']" class="certificates-row"></tr>
     </table>
 </div>

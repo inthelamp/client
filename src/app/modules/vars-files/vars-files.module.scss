@@ -30,6 +30,10 @@
       margin: 0 auto;
       text-align: left;
 
+      tr.certificates-row {
+        height: 0;
+      }
+
       .mat-column-common-name {
         width: 10%;
       }
@@ -99,36 +103,6 @@
         color: white;
         font-weight: bold;
       }
-    }
-  }
-
-  .vars-list {
-    text-align: center;
-    margin: 1em 1em 2em 1em;
-    padding: 0;
-    max-height: 30vmin;
-    overflow-y: auto;
-
-    li {
-        list-style-type: none;
-        position: relative;
-        margin-bottom: 1em;
-        cursor: default;
-        word-wrap: break-word;
-
-        &:hover {
-            left: .1em;
-        }
-        
-        span {
-            display: inline-block;
-            width: 75%;
-        }
-
-        button {
-            margin-left: 1em;
-            width: 15%;
-        }  
     }
   }
 }
